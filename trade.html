@@ -1,0 +1,232 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/modules/data.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/highcharts-more.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/maps/modules/map.js"></script>
+<script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<style>
+    body {
+		position: absolute;
+		left: 25%;
+		right: 25%;
+		width: 50%;
+	}
+	.choice {display: inline-block; height: 20px; width: 40%; border: 4px solid #0c234b; text-align: center; margin: 10px; padding: 10px; cursor: pointer; }
+	.choice-text {font-family: Verdana; font-size: 14px; font-weight: bold;}
+	#wrapper {width: 100%; height: 1400px; }
+	#main-map {width: 100%; height: 500px; margin-bottom: 20px;}
+	#slider {width: 90%; height: 10px; margin-bottom: 20px;}
+	#chart {width: 90%; height: 400px; margin-bottom: 20px; background-color: #dddddd;}
+	#percent-change { display: block; cursor: pointer; margin-bottom: 20px; }
+</style>
+<head>
+<body>
+<h1>Arizona Trade with Mexico 2002-2016</h1>
+<div class="choice" id="imports"><span class="choice-text">Imports</span></div>
+<div class="choice" id="exports"><span class="choice-text">Exports</span></div>
+<h3>Some words here</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquam urna erat, eget placerat leo mattis at. Aliquam sed mattis leo, tincidunt vestibulum velit. Nunc tortor risus, rhoncus ut gravida quis, lobortis ac orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed orci egestas, tincidunt risus in, porta dolor. Nam gravida nec nisi non ultrices. Quisque iaculis ut velit et tempor. Pellentesque hendrerit elit ut ipsum semper, a convallis mi blandit. Nullam faucibus eros orci, mattis facilisis lacus porttitor at. Nunc nec nulla aliquet, accumsan ex ac, feugiat arcu. Nunc vitae eleifend ex.</p>
+<div id="wrapper">
+<center>
+
+<div id="main-map"></div>
+<p><i>User slider to advance year.</i></p>
+<div id="slider"></div>
+<div id="chart"><center><i>Click state for trend</i></center></div>
+
+</center>
+<h3>Some words here</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquam urna erat, eget placerat leo mattis at. Aliquam sed mattis leo, tincidunt vestibulum velit. Nunc tortor risus, rhoncus ut gravida quis, lobortis ac orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed orci egestas, tincidunt risus in, porta dolor. Nam gravida nec nisi non ultrices. Quisque iaculis ut velit et tempor. Pellentesque hendrerit elit ut ipsum semper, a convallis mi blandit. Nullam faucibus eros orci, mattis facilisis lacus porttitor at. Nunc nec nulla aliquet, accumsan ex ac, feugiat arcu. Nunc vitae eleifend ex.</p>
+
+<h3>Additional resources</h3>
+<ul>
+<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="www.google.com">Read more.</a></li>
+<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="www.google.com">Read more.</a></li>
+<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="www.google.com">Read more.</a></li>
+<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="www.google.com">Read more.</a></li>
+</ul>
+
+</div>
+</body>
+<script>
+var exports = [ { "State": 2002, "All States": 97470271485, "Alabama": 661829312, "Alaska": 63266963, "Arizona": 3044828282, "Arkansas": 249376657, "California": 16066633135, "Colorado": 370570588, "Connecticut": 402897368, "Delaware": 319787401, "Dist of Columbia": 13568203, "Florida": 1466375207, "Georgia": 1092266116, "Hawaii": 2870421, "Idaho": 57508223, "Illinois": 2104646784, "Indiana": 1942422854, "Iowa": 396543787, "Kansas": 660550311, "Kentucky": 469100972, "Louisiana": 1638125597, "Maine": 29129438, "Maryland": 241690382, "Massachusetts": 569184560, "Michigan": 4229678704, "Minnesota": 426243939, "Mississippi": 462074648, "Missouri": 693589165, "Montana": 14975954, "Nebraska": 448011672, "Nevada": 70944877, "New Hampshire": 63786007, "New Jersey": 861416862, "New Mexico": 116680763, "New York": 1897545429, "North Carolina": 1332676198, "North Dakota": 39058512, "Ohio": 2109452423, "Oklahoma": 199991726, "Oregon": 329561355, "Pennsylvania": 1235469535, "Puerto Rico": 174150905, "Rhode Island": 75085351, "South Carolina": 781778569, "South Dakota": 75028882, "Tennessee": 1422332075, "Texas": 41611236992, "US Virgin Islands": 62073213, "Utah": 134524611, "Vermont": 29662691, "Virginia": 449911826, "Washington": 432902522, "West Virginia": 78769192, "Wisconsin": 717133598, "Wyoming": 57305234, "Unknown": 4974045494 }, { "State": 2003, "All States": 97411793347, "Alabama": 738779300, "Alaska": 71633233, "Arizona": 3223719982, "Arkansas": 244602942, "California": 14870781392, "Colorado": 575496045, "Connecticut": 476519406, "Delaware": 254435218, "Dist of Columbia": 7966049, "Florida": 1812037786, "Georgia": 1163600254, "Hawaii": 514845, "Idaho": 55530685, "Illinois": 2136979955, "Indiana": 2105850232, "Iowa": 668714154, "Kansas": 600614267, "Kentucky": 518823110, "Louisiana": 1764780667, "Maine": 24101121, "Maryland": 300807964, "Massachusetts": 702152099, "Michigan": 4007397407, "Minnesota": 392921203, "Mississippi": 255492614, "Missouri": 748537782, "Montana": 11204552, "Nebraska": 470288639, "Nevada": 99566724, "New Hampshire": 84652936, "New Jersey": 841321833, "New Mexico": 243280702, "New York": 1706108563, "North Carolina": 1459140432, "North Dakota": 32241942, "Ohio": 2106676758, "Oklahoma": 221718390, "Oregon": 393783515, "Pennsylvania": 1112121973, "Puerto Rico": 218794780, "Rhode Island": 66771733, "South Carolina": 752351840, "South Dakota": 123867739, "Tennessee": 1472481027, "Texas": 41548337248, "US Virgin Islands": 5392329, "Utah": 111008752, "Vermont": 34179640, "Virginia": 396026408, "Washington": 606662850, "West Virginia": 88023470, "Wisconsin": 789600745, "Wyoming": 62640596, "Unknown": 4630757519 }, { "State": 2004, "All States": 110731284870, "Alabama": 730444240, "Alaska": 107632429, "Arizona": 3852949875, "Arkansas": 343738953, "California": 17249254172, "Colorado": 685691326, "Connecticut": 586886621, "Delaware": 221974970, "Dist of Columbia": 11069758, "Florida": 1799117876, "Georgia": 1494067799, "Hawaii": 1151983, "Idaho": 92329213, "Illinois": 2416147555, "Indiana": 2542565540, "Iowa": 820780667, "Kansas": 644291317, "Kentucky": 787030920, "Louisiana": 1947117112, "Maine": 26416981, "Maryland": 341183087, "Massachusetts": 755059806, "Michigan": 4172649385, "Minnesota": 509325638, "Mississippi": 466538483, "Missouri": 946924067, "Montana": 34285144, "Nebraska": 418233981, "Nevada": 117628809, "New Hampshire": 94223129, "New Jersey": 1125552016, "New Mexico": 356312438, "New York": 2187425582, "North Carolina": 1579346124, "North Dakota": 47033573, "Ohio": 2400994321, "Oklahoma": 329095276, "Oregon": 686578885, "Pennsylvania": 1199995345, "Puerto Rico": 291239675, "Rhode Island": 65210762, "South Carolina": 868297685, "South Dakota": 158670850, "Tennessee": 1790910184, "Texas": 45714231208, "US Virgin Islands": 11457472, "Utah": 121977273, "Vermont": 33226125, "Virginia": 423083934, "Washington": 747192201, "West Virginia": 425247044, "Wisconsin": 1061993244, "Wyoming": 70996752, "Unknown": 4818506065 }, { "State": 2005, "All States": 120247580142, "Alabama": 918426265, "Alaska": 173805131, "Arizona": 4747745873, "Arkansas": 416303162, "California": 17711523901, "Colorado": 850791407, "Connecticut": 560170713, "Delaware": 158526460, "Dist of Columbia": 10028830, "Florida": 2021924528, "Georgia": 1413556540, "Hawaii": 1010244, "Idaho": 101590340, "Illinois": 2890677380, "Indiana": 2619742525, "Iowa": 1029304589, "Kansas": 855486024, "Kentucky": 1404882218, "Louisiana": 2238163229, "Maine": 33005131, "Maryland": 309238886, "Massachusetts": 781969090, "Michigan": 4219894801, "Minnesota": 550306791, "Mississippi": 535938117, "Missouri": 1166473226, "Montana": 37969676, "Nebraska": 528536545, "Nevada": 179213848, "New Hampshire": 103356477, "New Jersey": 1200265086, "New Mexico": 185135111, "New York": 2308212602, "North Carolina": 1501777362, "North Dakota": 50848186, "Ohio": 2395422348, "Oklahoma": 390506541, "Oregon": 812727390, "Pennsylvania": 1422449849, "Puerto Rico": 321857965, "Rhode Island": 68028885, "South Carolina": 1114512399, "South Dakota": 160122843, "Tennessee": 1893867155, "Texas": 50277117938, "US Virgin Islands": 1370318, "Utah": 129446106, "Vermont": 38740741, "Virginia": 406009543, "Washington": 842830947, "West Virginia": 141636930, "Wisconsin": 1337780744, "Wyoming": 71472950, "Unknown": 4605878256 }, { "State": 2006, "All States": 133721712754, "Alabama": 960218527, "Alaska": 128983380, "Arizona": 5369420286, "Arkansas": 527056335, "California": 19627703070, "Colorado": 1018636548, "Connecticut": 705854091, "Delaware": 172403774, "Dist of Columbia": 5683054, "Florida": 2447410050, "Georgia": 1438373536, "Hawaii": 3599927, "Idaho": 131149790, "Illinois": 3402201997, "Indiana": 2424780790, "Iowa": 1280833438, "Kansas": 954936753, "Kentucky": 1777392587, "Louisiana": 2183352490, "Maine": 41351167, "Maryland": 230257597, "Massachusetts": 824287815, "Michigan": 4656209304, "Minnesota": 595977053, "Mississippi": 670529474, "Missouri": 1227917870, "Montana": 42011000, "Nebraska": 802922983, "Nevada": 207896016, "New Hampshire": 116003230, "New Jersey": 1676122543, "New Mexico": 257968275, "New York": 2425303772, "North Carolina": 1776916998, "North Dakota": 55085764, "Ohio": 2702641078, "Oklahoma": 482489070, "Oregon": 856331907, "Pennsylvania": 1993068105, "Puerto Rico": 394945412, "Rhode Island": 103513536, "South Carolina": 1094385049, "South Dakota": 172028333, "Tennessee": 2265921508, "Texas": 54811272051, "US Virgin Islands": 4312453, "Utah": 267341414, "Vermont": 41937413, "Virginia": 486048877, "Washington": 1045616941, "West Virginia": 130088090, "Wisconsin": 1850790850, "Wyoming": 46553964, "Unknown": 4805675419 }, { "State": 2007, "All States": 135918138711, "Alabama": 798585812, "Alaska": 63846772, "Arizona": 5235202519, "Arkansas": 539680225, "California": 18346837380, "Colorado": 949974310, "Connecticut": 784863676, "Delaware": 146719935, "Dist of Columbia": 4035605, "Florida": 3103128451, "Georgia": 1227762190, "Hawaii": 2558937, "Idaho": 135637312, "Illinois": 3629011150, "Indiana": 2605397906, "Iowa": 1584020524, "Kansas": 915799405, "Kentucky": 1366415684, "Louisiana": 2820989724, "Maine": 29096574, "Maryland": 465577772, "Massachusetts": 995503009, "Michigan": 5206472882, "Minnesota": 664852537, "Mississippi": 735986615, "Missouri": 1354217176, "Montana": 24741884, "Nebraska": 900397786, "Nevada": 177561462, "New Hampshire": 128424047, "New Jersey": 1435163078, "New Mexico": 375783462, "New York": 2161590556, "North Carolina": 1728304525, "North Dakota": 122544135, "Ohio": 2995489054, "Oklahoma": 433566218, "Oregon": 953745348, "Pennsylvania": 2223694830, "Puerto Rico": 385683824, "Rhode Island": 71141717, "South Carolina": 981531051, "South Dakota": 239161999, "Tennessee": 2421312579, "Texas": 56006348150, "US Virgin Islands": 27196669, "Utah": 223808337, "Vermont": 51900954, "Virginia": 586788583, "Washington": 1035756368, "West Virginia": 150145092, "Wisconsin": 1481389191, "Wyoming": 15509202, "Unknown": 4867284528 }, { "State": 2008, "All States": 151220056463, "Alabama": 1030155992, "Alaska": 29848805, "Arizona": 5909663703, "Arkansas": 796122592, "California": 20472284817, "Colorado": 961142887, "Connecticut": 1045727789, "Delaware": 230034537, "Dist of Columbia": 5151812, "Florida": 2496301058, "Georgia": 1634171174, "Hawaii": 4225922, "Idaho": 183772364, "Illinois": 4259772082, "Indiana": 2112604745, "Iowa": 1949432830, "Kansas": 1397208054, "Kentucky": 1190387943, "Louisiana": 3520747226, "Maine": 32286351, "Maryland": 413383511, "Massachusetts": 1162834835, "Michigan": 6414571468, "Minnesota": 863131533, "Mississippi": 1106482721, "Missouri": 1327314774, "Montana": 36330495, "Nebraska": 1140144457, "Nevada": 185621224, "New Hampshire": 557782983, "New Jersey": 1461289147, "New Mexico": 384463029, "New York": 2339980181, "North Carolina": 1792224396, "North Dakota": 198722443, "Ohio": 3543577311, "Oklahoma": 358832499, "Oregon": 747487348, "Pennsylvania": 2433569651, "Puerto Rico": 324521140, "Rhode Island": 82451589, "South Carolina": 1225687544, "South Dakota": 292642090, "Tennessee": 2497407252, "Texas": 62087748312, "US Virgin Islands": 31989586, "Utah": 241904336, "Vermont": 66728901, "Virginia": 685487342, "Washington": 851111248, "West Virginia": 146295514, "Wisconsin": 1761454608, "Wyoming": 36438351, "Unknown": 5159401961 }, { "State": 2009, "All States": 128892137645, "Alabama": 727335922, "Alaska": 7689584, "Arizona": 4546743514, "Arkansas": 521974376, "California": 17473944858, "Colorado": 583788781, "Connecticut": 757021828, "Delaware": 89928597, "Dist of Columbia": 10477648, "Florida": 2011009605, "Georgia": 1359528953, "Hawaii": 2725600, "Idaho": 186753836, "Illinois": 3549959519, "Indiana": 1780990268, "Iowa": 1393970972, "Kansas": 1207748929, "Kentucky": 1008840658, "Louisiana": 2159532523, "Maine": 43132829, "Maryland": 429683128, "Massachusetts": 902390162, "Michigan": 5214440714, "Minnesota": 729215023, "Mississippi": 649827558, "Missouri": 1033589864, "Montana": 29715716, "Nebraska": 1104973099, "Nevada": 217543379, "New Hampshire": 767437976, "New Jersey": 1361540709, "New Mexico": 384590043, "New York": 1764284198, "North Carolina": 1451100504, "North Dakota": 197260562, "Ohio": 2686551638, "Oklahoma": 527504651, "Oregon": 200370848, "Pennsylvania": 2008616137, "Puerto Rico": 261630418, "Rhode Island": 83808523, "South Carolina": 1102218035, "South Dakota": 234560971, "Tennessee": 2361970893, "Texas": 56035432034, "US Virgin Islands": 645976, "Utah": 279433403, "Vermont": 48392827, "Virginia": 751629190, "Washington": 1061873478, "West Virginia": 129504146, "Wisconsin": 1585512206, "Wyoming": 74111644, "Unknown": 3797679192 }, { "State": 2010, "All States": 163664645537, "Alabama": 1125058791, "Alaska": 13396555, "Arizona": 5135287595, "Arkansas": 544233711, "California": 20949088163, "Colorado": 589770170, "Connecticut": 982300772, "Delaware": 147926316, "Dist of Columbia": 3897362, "Florida": 2199498787, "Georgia": 1940535455, "Hawaii": 2655708, "Idaho": 185566409, "Illinois": 4267263532, "Indiana": 2619825039, "Iowa": 1832623397, "Kansas": 1280791310, "Kentucky": 1287806833, "Louisiana": 2776608754, "Maine": 32295119, "Maryland": 488347281, "Massachusetts": 1273049048, "Michigan": 7424097148, "Minnesota": 977586864, "Mississippi": 1152463711, "Missouri": 1304418191, "Montana": 79893988, "Nebraska": 1313887796, "Nevada": 350946039, "New Hampshire": 1048720916, "New Jersey": 1514942380, "New Mexico": 429407229, "New York": 2212553367, "North Carolina": 1828316184, "North Dakota": 165887478, "Ohio": 3496905207, "Oklahoma": 424101743, "Oregon": 233241761, "Pennsylvania": 2413158860, "Puerto Rico": 467964277, "Rhode Island": 136360072, "South Carolina": 1319323963, "South Dakota": 340244699, "Tennessee": 3038729642, "Texas": 72688493497, "US Virgin Islands": 1187272, "Utah": 456072862, "Vermont": 62244726, "Virginia": 861571928, "Washington": 989987904, "West Virginia": 190408740, "Wisconsin": 2011582051, "Wyoming": 69018813, "Unknown": 4983100122 }, { "State": 2011, "All States": 198288737278, "Alabama": 1717308212, "Alaska": 12226933, "Arizona": 6044947361, "Arkansas": 678954858, "California": 25825407021, "Colorado": 754983964, "Connecticut": 1101755143, "Delaware": 151006330, "Dist of Columbia": 2474993, "Florida": 2202098127, "Georgia": 1980866380, "Hawaii": 2489773, "Idaho": 209699686, "Illinois": 5725801056, "Indiana": 3287770696, "Iowa": 2182110744, "Kansas": 1620559210, "Kentucky": 1456368173, "Louisiana": 5767285895, "Maine": 28290063, "Maryland": 319901779, "Massachusetts": 1437437585, "Michigan": 8971144287, "Minnesota": 1216700475, "Mississippi": 1149305706, "Missouri": 1440814325, "Montana": 128792241, "Nebraska": 1870325462, "Nevada": 323397230, "New Hampshire": 943253516, "New Jersey": 2108321395, "New Mexico": 464704983, "New York": 2610525459, "North Carolina": 1996406300, "North Dakota": 178254562, "Ohio": 4049916021, "Oklahoma": 525831980, "Oregon": 280432207, "Pennsylvania": 2631314014, "Puerto Rico": 543983252, "Rhode Island": 158473415, "South Carolina": 1775293813, "South Dakota": 394840367, "Tennessee": 3813159393, "Texas": 87186087567, "US Virgin Islands": 1483152, "Utah": 515755004, "Vermont": 72452143, "Virginia": 902167701, "Washington": 1374603088, "West Virginia": 229674901, "Wisconsin": 1988379775, "Wyoming": 77716775, "Unknown": 5855482787 }, { "State": 2012, "All States": 215875115867, "Alabama": 2030441402, "Alaska": 8609881, "Arizona": 6290781287, "Arkansas": 846888172, "California": 26379600169, "Colorado": 849139799, "Connecticut": 1142184338, "Delaware": 145203078, "Dist of Columbia": 1810577, "Florida": 2227674667, "Georgia": 2276321138, "Hawaii": 3503570, "Idaho": 257141251, "Illinois": 6375918737, "Indiana": 3907213540, "Iowa": 2499730121, "Kansas": 1437291643, "Kentucky": 1714269569, "Louisiana": 6507856124, "Maine": 34828312, "Maryland": 344513902, "Massachusetts": 1608839987, "Michigan": 10463850653, "Minnesota": 1295927750, "Mississippi": 1165762051, "Missouri": 1821757937, "Montana": 52791076, "Nebraska": 1805817629, "Nevada": 336322024, "New Hampshire": 474220993, "New Jersey": 2111024274, "New Mexico": 593031976, "New York": 2605693140, "North Carolina": 2318844267, "North Dakota": 282544654, "Ohio": 4717589614, "Oklahoma": 620862404, "Oregon": 372080218, "Pennsylvania": 2831125861, "Puerto Rico": 601605227, "Rhode Island": 150239498, "South Carolina": 1971946167, "South Dakota": 346339030, "Tennessee": 4232431026, "Texas": 94434311409, "US Virgin Islands": 3284168, "Utah": 487340464, "Vermont": 129615014, "Virginia": 1055407462, "Washington": 2864234783, "West Virginia": 238637762, "Wisconsin": 2166654084, "Wyoming": 56329200, "Unknown": 6377732788 }, { "State": 2013, "All States": 225954367783, "Alabama": 2226472857, "Alaska": 7380348, "Arizona": 7070796842, "Arkansas": 877690677, "California": 23911005654, "Colorado": 917251036, "Connecticut": 1213260576, "Delaware": 126793263, "Dist of Columbia": 1592049, "Florida": 2190721224, "Georgia": 2598981274, "Hawaii": 2234066, "Idaho": 273302545, "Illinois": 7374072430, "Indiana": 4063073356, "Iowa": 2181477045, "Kansas": 1534494880, "Kentucky": 1923602217, "Louisiana": 6400291989, "Maine": 42653576, "Maryland": 494108860, "Massachusetts": 1861419740, "Michigan": 12889768666, "Minnesota": 1472845752, "Mississippi": 1318984375, "Missouri": 2032702095, "Montana": 55812257, "Nebraska": 1157180642, "Nevada": 389272094, "New Hampshire": 409192868, "New Jersey": 2190123898, "New Mexico": 800905402, "New York": 2319907697, "North Carolina": 2721879881, "North Dakota": 238248867, "Ohio": 5240818797, "Oklahoma": 613571849, "Oregon": 335932125, "Pennsylvania": 3452868754, "Puerto Rico": 445712168, "Rhode Island": 166195236, "South Carolina": 1884229739, "South Dakota": 370811160, "Tennessee": 4484457184, "Texas": 99256924748, "US Virgin Islands": 1617740, "Utah": 546791824, "Vermont": 129855907, "Virginia": 1051305634, "Washington": 3198400720, "West Virginia": 323658003, "Wisconsin": 2517358465, "Wyoming": 48898132, "Unknown": 6595458600 }, { "State": 2014, "All States": 240331176824, "Alabama": 2345667285, "Alaska": 9751182, "Arizona": 8623763901, "Arkansas": 754242614, "California": 25449957756, "Colorado": 1069077315, "Connecticut": 1280725691, "Delaware": 106914350, "Dist of Columbia": 4813621, "Florida": 2225112482, "Georgia": 3006696760, "Hawaii": 1581432, "Idaho": 301011859, "Illinois": 8010951902, "Indiana": 5137942735, "Iowa": 2328756144, "Kansas": 1786465516, "Kentucky": 2500570055, "Louisiana": 7358102308, "Maine": 53504559, "Maryland": 463055110, "Massachusetts": 2317848939, "Michigan": 12314749741, "Minnesota": 2239686814, "Mississippi": 1258956402, "Missouri": 2388584190, "Montana": 92847325, "Nebraska": 1353162036, "Nevada": 405446500, "New Hampshire": 449578115, "New Jersey": 2657333632, "New Mexico": 1547963563, "New York": 3063582747, "North Carolina": 3017060166, "North Dakota": 320020830, "Ohio": 6411641917, "Oklahoma": 612497298, "Oregon": 375280046, "Pennsylvania": 3729781958, "Puerto Rico": 568870872, "Rhode Island": 195344506, "South Carolina": 2225731872, "South Dakota": 343243875, "Tennessee": 5078247527, "Texas": 99505541139, "US Virgin Islands": 1472080, "Utah": 742018241, "Vermont": 212269106, "Virginia": 1218300316, "Washington": 2735147332, "West Virginia": 238864617, "Wisconsin": 2836184586, "Wyoming": 30783004, "Unknown": 7024470955 }, { "State": 2015, "All States": 235745137477, "Alabama": 2886271411, "Alaska": 7703451, "Arizona": 9161778790, "Arkansas": 843824015, "California": 26786788635, "Colorado": 1077361023, "Connecticut": 1319126998, "Delaware": 148709194, "Dist of Columbia": 5244239, "Florida": 2721635599, "Georgia": 3471757799, "Hawaii": 1897421, "Idaho": 264104056, "Illinois": 9109526270, "Indiana": 4916771012, "Iowa": 2099851409, "Kansas": 1804129379, "Kentucky": 2303709081, "Louisiana": 5874155009, "Maine": 59551925, "Maryland": 445143018, "Massachusetts": 2622529698, "Michigan": 11792921285, "Minnesota": 2382249623, "Mississippi": 1143416270, "Missouri": 2489937265, "Montana": 40739333, "Nebraska": 1261446601, "Nevada": 448281768, "New Hampshire": 503095323, "New Jersey": 2618334281, "New Mexico": 1683243530, "New York": 3176471188, "North Carolina": 3190638971, "North Dakota": 294491296, "Ohio": 6659974628, "Oklahoma": 565707935, "Oregon": 406697986, "Pennsylvania": 4181438789, "Puerto Rico": 414223259, "Rhode Island": 180609200, "South Carolina": 2501212232, "South Dakota": 393786699, "Tennessee": 4911807388, "Texas": 92488949471, "US Virgin Islands": 1907100, "Utah": 854176176, "Vermont": 212902020, "Virginia": 1231271003, "Washington": 1873005045, "West Virginia": 184369725, "Wisconsin": 2969699078, "Wyoming": 29576630, "Unknown": 6726986947 }, { "State": 2016, "All States": 230959100467, "Alabama": 2618363478, "Alaska": 35887290, "Arizona": 8323085302, "Arkansas": 685907968, "California": 25262884222, "Colorado": 1068625152, "Connecticut": 1060675322, "Delaware": 143028844, "Dist of Columbia": 5282894, "Florida": 2822963108, "Georgia": 3521988474, "Hawaii": 1659693, "Idaho": 235822960, "Illinois": 9486334959, "Indiana": 4887486728, "Iowa": 2306101694, "Kansas": 1876483709, "Kentucky": 2239960569, "Louisiana": 5686106228, "Maine": 46148063, "Maryland": 421832877, "Massachusetts": 2471335851, "Michigan": 12037182460, "Minnesota": 2339609592, "Mississippi": 1041396793, "Missouri": 2563275800, "Montana": 36752930, "Nebraska": 1459868982, "Nevada": 493947076, "New Hampshire": 442291812, "New Jersey": 2592914443, "New Mexico": 1557394229, "New York": 2979299123, "North Carolina": 3013646298, "North Dakota": 256923587, "Ohio": 6458653147, "Oklahoma": 537257038, "Oregon": 308893166, "Pennsylvania": 3674050309, "Puerto Rico": 505873772, "Rhode Island": 208059138, "South Carolina": 2118282364, "South Dakota": 298970249, "Tennessee": 4462670492, "Texas": 92673905230, "US Virgin Islands": 36982579, "Utah": 741002424, "Vermont": 127894391, "Virginia": 1094477792, "Washington": 1959566752, "West Virginia": 179327206, "Wisconsin": 3050416689, "Wyoming": 38087780, "Unknown": 6462261439 } ];
+var imports = [ { "State": 2008, "Alabama": 957638897, "Alaska": 8753159, "Arizona": 5329714800, "Arkansas": 524430372, "California": 33829272578, "Colorado": 733114588, "Connecticut": 2222744274, "Delaware": 418222674, "Dist of Columbia": 16761849, "Florida": 3033803816, "Georgia": 3881026703, "Hawaii": 13978067, "Idaho": 127772489, "Illinois": 7375655961, "Indiana": 2523513090, "Iowa": 953832063, "Kansas": 508194626, "Kentucky": 2290798228, "Louisiana": 9368400617, "Maine": 37570148, "Maryland": 1416204853, "Massachusetts": 1986003604, "Michigan": 23801972151, "Minnesota": 1603761408, "Mississippi": 5502296270, "Missouri": 2090358268, "Montana": 8403631, "Nebraska": 350430881, "Nevada": 263912665, "New Hampshire": 487765000, "New Jersey": 2772680942, "New Mexico": 618182644, "New York": 3662331903, "North Carolina": 4671419793, "North Dakota": 39291750, "Ohio": 5085533627, "Oklahoma": 525734894, "Oregon": 1579915591, "Pennsylvania": 3045750012, "Puerto Rico": 297026620, "Rhode Island": 588334520, "South Carolina": 1893973906, "South Dakota": 25107642, "Tennessee": 3570827950, "Texas": 68700394497, "US Virgin Islands": 2487296, "Utah": 634276664, "Vermont": 43580327, "Virginia": 611314315, "Washington": 387741257, "West Virginia": 281069794, "Wisconsin": 2618578605, "Wyoming": 9050853, "Unknown": 2610705802 }, { "State": 2009, "Alabama": 670749858, "Alaska": 7055452, "Arizona": 4633593231, "Arkansas": 465404238, "California": 29519576816, "Colorado": 636816217, "Connecticut": 1716477167, "Delaware": 33972940, "Dist of Columbia": 20403815, "Florida": 3238513190, "Georgia": 2907048166, "Hawaii": 9964251, "Idaho": 185783750, "Illinois": 6155202443, "Indiana": 2490144328, "Iowa": 864551670, "Kansas": 345018509, "Kentucky": 2321019577, "Louisiana": 3632330553, "Maine": 62614426, "Maryland": 1099906008, "Massachusetts": 2288202143, "Michigan": 17215821588, "Minnesota": 1316491920, "Mississippi": 4311636688, "Missouri": 1980369197, "Montana": 7265722, "Nebraska": 397921008, "Nevada": 214635714, "New Hampshire": 416522267, "New Jersey": 2887374173, "New Mexico": 652364392, "New York": 2667241466, "North Carolina": 3739163528, "North Dakota": 37201135, "Ohio": 4194615601, "Oklahoma": 597638601, "Oregon": 403874078, "Pennsylvania": 2520315194, "Puerto Rico": 298276169, "Rhode Island": 701064369, "South Carolina": 1203608495, "South Dakota": 22935380, "Tennessee": 3229849575, "Texas": 57001134372, "US Virgin Islands": 2533514, "Utah": 1819319959, "Vermont": 39678381, "Virginia": 574357732, "Washington": 344713109, "West Virginia": 152267895, "Wisconsin": 2320409733, "Wyoming": 12155291, "Unknown": 2067267587 }, { "State": 2010, "Alabama": 846224576, "Alaska": 7336967, "Arizona": 5630888988, "Arkansas": 584135988, "California": 32760791109, "Colorado": 652080553, "Connecticut": 2565718738, "Delaware": 61977606, "Dist of Columbia": 22719588, "Florida": 4392876010, "Georgia": 3662798849, "Hawaii": 15376435, "Idaho": 165030611, "Illinois": 8553042180, "Indiana": 3168931847, "Iowa": 984845419, "Kansas": 754369530, "Kentucky": 2898800170, "Louisiana": 5125625162, "Maine": 63739109, "Maryland": 1258412367, "Massachusetts": 2880529134, "Michigan": 28152422907, "Minnesota": 1750443316, "Mississippi": 4343601698, "Missouri": 2541734615, "Montana": 9443223, "Nebraska": 368653926, "Nevada": 286226786, "New Hampshire": 568668483, "New Jersey": 3218894695, "New Mexico": 634845410, "New York": 3057427708, "North Carolina": 4099312040, "North Dakota": 48423532, "Ohio": 5547830375, "Oklahoma": 653463136, "Oregon": 565627742, "Pennsylvania": 2822378962, "Puerto Rico": 326855986, "Rhode Island": 868887614, "South Carolina": 1713985792, "South Dakota": 45116707, "Tennessee": 3667812730, "Texas": 79021334470, "US Virgin Islands": 2512604, "Utah": 2852211734, "Vermont": 37259873, "Virginia": 495862011, "Washington": 415347738, "West Virginia": 204047456, "Wisconsin": 2909757886, "Wyoming": 21869884, "Unknown": 1677111031 }, { "State": 2011, "Alabama": 974140962, "Alaska": 9616275, "Arizona": 6166905714, "Arkansas": 594829390, "California": 33641163805, "Colorado": 682227487, "Connecticut": 4332865578, "Delaware": 85104849, "Dist of Columbia": 20729435, "Florida": 5413666091, "Georgia": 4639852035, "Hawaii": 18048339, "Idaho": 247394334, "Illinois": 8517121433, "Indiana": 3638883512, "Iowa": 1203688669, "Kansas": 758504091, "Kentucky": 2723035247, "Louisiana": 7167487424, "Maine": 61936416, "Maryland": 1498747909, "Massachusetts": 3206664893, "Michigan": 32918714161, "Minnesota": 2391273472, "Mississippi": 5454241849, "Missouri": 2503524049, "Montana": 16391102, "Nebraska": 335497422, "Nevada": 378754926, "New Hampshire": 556580703, "New Jersey": 3007708779, "New Mexico": 346906953, "New York": 3065925980, "North Carolina": 4788623170, "North Dakota": 155357623, "Ohio": 6149857856, "Oklahoma": 811699083, "Oregon": 673060301, "Pennsylvania": 2948063606, "Puerto Rico": 381653563, "Rhode Island": 1065069944, "South Carolina": 2272273946, "South Dakota": 55475225, "Tennessee": 3809287854, "Texas": 92593711489, "US Virgin Islands": 20473825, "Utah": 4359080032, "Vermont": 50983570, "Virginia": 567080375, "Washington": 499754932, "West Virginia": 377575162, "Wisconsin": 3029515002, "Wyoming": 18420863, "Unknown": 1668445253 }, { "State": 2012, "Alabama": 1185610405, "Alaska": 10253722, "Arizona": 6753081574, "Arkansas": 778258187, "California": 36058648775, "Colorado": 1089121714, "Connecticut": 1692610244, "Delaware": 232596424, "Dist of Columbia": 20042395, "Florida": 5620563657, "Georgia": 4549552661, "Hawaii": 11901365, "Idaho": 181137662, "Illinois": 9030355198, "Indiana": 3566582686, "Iowa": 1430144229, "Kansas": 1007991670, "Kentucky": 3196544437, "Louisiana": 5131631188, "Maine": 61920978, "Maryland": 1739746593, "Massachusetts": 3266737414, "Michigan": 38142231039, "Minnesota": 2119233983, "Mississippi": 4530205385, "Missouri": 2625592968, "Montana": 17484164, "Nebraska": 181793896, "Nevada": 358221689, "New Hampshire": 562204171, "New Jersey": 2757529744, "New Mexico": 495761804, "New York": 2997599138, "North Carolina": 5188432041, "North Dakota": 144276573, "Ohio": 6659022766, "Oklahoma": 885555653, "Oregon": 638292042, "Pennsylvania": 2852073873, "Puerto Rico": 372345565, "Rhode Island": 1296722438, "South Carolina": 2783309001, "South Dakota": 58286518, "Tennessee": 4962694766, "Texas": 99868197057, "US Virgin Islands": 2571000, "Utah": 4409322406, "Vermont": 97591393, "Virginia": 493014773, "Washington": 555912580, "West Virginia": 273156718, "Wisconsin": 3005571540, "Wyoming": 19805342, "Unknown": 1624594342 }, { "State": 2013, "Alabama": 1405594105, "Alaska": 13753573, "Arizona": 7036728789, "Arkansas": 583114562, "California": 36256672463, "Colorado": 1352731746, "Connecticut": 1016232324, "Delaware": 243976820, "Dist of Columbia": 14175946, "Florida": 4845889216, "Georgia": 5303082849, "Hawaii": 9651585, "Idaho": 74238961, "Illinois": 11675476488, "Indiana": 3966766774, "Iowa": 1470743158, "Kansas": 962277659, "Kentucky": 4977139326, "Louisiana": 4701859706, "Maine": 56682240, "Maryland": 2212941649, "Massachusetts": 3378830747, "Michigan": 40256353408, "Minnesota": 1963165952, "Mississippi": 4874105978, "Missouri": 2868140990, "Montana": 72914425, "Nebraska": 196873631, "Nevada": 358047955, "New Hampshire": 574022441, "New Jersey": 3481206287, "New Mexico": 360855748, "New York": 3349981723, "North Carolina": 4796633692, "North Dakota": 143405558, "Ohio": 7615056234, "Oklahoma": 1056041633, "Oregon": 509494134, "Pennsylvania": 2989037507, "Puerto Rico": 403380737, "Rhode Island": 1080260709, "South Carolina": 2221556555, "South Dakota": 65399386, "Tennessee": 5685528152, "Texas": 94677612529, "US Virgin Islands": 5242018, "Utah": 3470082736, "Vermont": 109127181, "Virginia": 573292515, "Washington": 790580089, "West Virginia": 160001673, "Wisconsin": 2451608338, "Wyoming": 21530427, "Unknown": 1816939215 }, { "State": 2014, "Alabama": 3554054543, "Alaska": 20899368, "Arizona": 7309876356, "Arkansas": 602628515, "California": 41339558002, "Colorado": 1737615800, "Connecticut": 2576770333, "Delaware": 336324426, "Dist of Columbia": 9782896, "Florida": 4557600491, "Georgia": 6090332894, "Hawaii": 97500671, "Idaho": 97641509, "Illinois": 13442429609, "Indiana": 5140199106, "Iowa": 1728097671, "Kansas": 966189737, "Kentucky": 5511855129, "Louisiana": 3290887310, "Maine": 72389346, "Maryland": 2473639756, "Massachusetts": 3622095923, "Michigan": 42532705837, "Minnesota": 2141463800, "Mississippi": 2793164854, "Missouri": 3282877845, "Montana": 99913622, "Nebraska": 274328186, "Nevada": 393642099, "New Hampshire": 574568565, "New Jersey": 4815961169, "New Mexico": 505261025, "New York": 3626321396, "North Carolina": 4643544519, "North Dakota": 153307921, "Ohio": 7843407036, "Oklahoma": 1055905745, "Oregon": 576995166, "Pennsylvania": 3530249340, "Puerto Rico": 385416408, "Rhode Island": 944774974, "South Carolina": 3640767515, "South Dakota": 71062245, "Tennessee": 6726936299, "Texas": 90779646196, "US Virgin Islands": 5347532, "Utah": 3126816045, "Vermont": 45857543, "Virginia": 740455813, "Washington": 802932372, "West Virginia": 253444579, "Wisconsin": 2555379777, "Wyoming": 28958862, "Unknown": 2209697398 }, { "State": 2015, "Alabama": 2878132361, "Alaska": 32795739, "Arizona": 7639626189, "Arkansas": 637754052, "California": 45092978166, "Colorado": 1719505560, "Connecticut": 2479576748, "Delaware": 554685255, "Dist of Columbia": 7049442, "Florida": 5555052306, "Georgia": 6278155947, "Hawaii": 8650345, "Idaho": 137565291, "Illinois": 13233139380, "Indiana": 5267951173, "Iowa": 1612084933, "Kansas": 1019882163, "Kentucky": 6089460246, "Louisiana": 1474872358, "Maine": 74005241, "Maryland": 2826690969, "Massachusetts": 3940717272, "Michigan": 43952323800, "Minnesota": 2003813721, "Mississippi": 1411798857, "Missouri": 3215013131, "Montana": 99550399, "Nebraska": 295553016, "Nevada": 475825783, "New Hampshire": 488729976, "New Jersey": 4823874021, "New Mexico": 635479269, "New York": 3740440401, "North Carolina": 4539099685, "North Dakota": 147978910, "Ohio": 8214128021, "Oklahoma": 1024082711, "Oregon": 713599951, "Pennsylvania": 4221833705, "Puerto Rico": 388779864, "Rhode Island": 1213993166, "South Carolina": 3446613049, "South Dakota": 69830196, "Tennessee": 7231379934, "Texas": 84012183465, "US Virgin Islands": 5255328, "Utah": 3337642705, "Vermont": 32758551, "Virginia": 928904827, "Washington": 1307485813, "West Virginia": 219602823, "Wisconsin": 2692199954, "Wyoming": 48489047, "Unknown": 2909325850 }, { "State": 2016, "Alabama": 3173673499, "Alaska": 27937940, "Arizona": 7454362043, "Arkansas": 597753717, "California": 46361568473, "Colorado": 1572918833, "Connecticut": 2493334006, "Delaware": 263412179, "Dist of Columbia": 9112325, "Florida": 5791288134, "Georgia": 6469419598, "Hawaii": 11698841, "Idaho": 115273768, "Illinois": 11728072661, "Indiana": 4492646380, "Iowa": 1152108433, "Kansas": 816134164, "Kentucky": 5199726066, "Louisiana": 1093390447, "Maine": 70042098, "Maryland": 2162410332, "Massachusetts": 3533469086, "Michigan": 49049558956, "Minnesota": 2032103094, "Mississippi": 1560839572, "Missouri": 2692853434, "Montana": 99480401, "Nebraska": 247343335, "Nevada": 474302277, "New Hampshire": 428654016, "New Jersey": 4721056621, "New Mexico": 701836724, "New York": 3401083643, "North Carolina": 4586296677, "North Dakota": 116983680, "Ohio": 7957594275, "Oklahoma": 815522423, "Oregon": 874355489, "Pennsylvania": 4025961329, "Puerto Rico": 458216728, "Rhode Island": 1153065122, "South Carolina": 3397291566, "South Dakota": 72237383, "Tennessee": 7325324190, "Texas": 81037323626, "US Virgin Islands": 4247330, "Utah": 3309845598, "Vermont": 42746231, "Virginia": 796552472, "Washington": 1307845463, "West Virginia": 229842269, "Wisconsin": 2752699434, "Wyoming": 97201777, "Unknown": 3791021509 } ];
+var gdp = [ { "Year": 2005, "United States": 14203241, "Alabama": 171723, "Alaska": 40767, "Arizona": 251185, "Arkansas": 99144, "California": 1910337, "Colorado": 238417, "Connecticut": 231573, "Delaware": 57069, "District of Columbia": 92500, "Florida": 773024, "Georgia": 424964, "Hawaii": 64824, "Idaho": 51266, "Illinois": 646092, "Indiana": 268886 }, { "Year": 2006, "United States": 14584888, "Alabama": 174675, "Alaska": 43455, "Arizona": 265798, "Arkansas": 101028, "California": 1975457, "Colorado": 243172, "Connecticut": 237280, "Delaware": 58308, "District of Columbia": 93801, "Florida": 797997, "Georgia": 430438, "Hawaii": 66313, "Idaho": 54240, "Illinois": 663632, "Indiana": 274074 }, { "Year": 2007, "United States": 14798367, "Alabama": 175332, "Alaska": 45735, "Arizona": 272417, "Arkansas": 100287, "California": 1999340, "Colorado": 250252, "Connecticut": 247248, "Delaware": 57835, "District of Columbia": 96309, "Florida": 799113, "Georgia": 433595, "Hawaii": 67421, "Idaho": 55810, "Illinois": 671051, "Indiana": 281626 }, { "Year": 2008, "United States": 14718301, "Alabama": 174459, "Alaska": 46422, "Arizona": 262521, "Arkansas": 100485, "California": 1993244, "Colorado": 252558, "Connecticut": 243856, "Delaware": 55273, "District of Columbia": 99039, "Florida": 764086, "Georgia": 420483, "Hawaii": 67721, "Idaho": 56296, "Illinois": 655275, "Indiana": 279574 }, { "Year": 2009, "United States": 14320114, "Alabama": 168315, "Alaska": 50463, "Arizona": 242509, "Arkansas": 98020, "California": 1912115, "Colorado": 247270, "Connecticut": 233562, "Delaware": 57350, "District of Columbia": 98415, "Florida": 721755, "Georgia": 404575, "Hawaii": 65382, "Idaho": 53882, "Illinois": 638032, "Indiana": 262068 }, { "Year": 2010, "United States": 14628165, "Alabama": 171861, "Alaska": 49671, "Arizona": 243101, "Arkansas": 101309, "California": 1936487, "Colorado": 248667, "Connecticut": 232357, "Delaware": 56541, "District of Columbia": 101689, "Florida": 727658, "Georgia": 408248, "Hawaii": 67403, "Idaho": 54389, "Illinois": 645983, "Indiana": 279068 }, { "Year": 2011, "United States": 14833679, "Alabama": 173760, "Alaska": 51004, "Arizona": 247414, "Arkansas": 103312, "California": 1962926, "Colorado": 252256, "Connecticut": 228454, "Delaware": 57919, "District of Columbia": 103539, "Florida": 723317, "Georgia": 413457, "Hawaii": 67971, "Idaho": 54288, "Illinois": 658411, "Indiana": 280588 }, { "Year": 2012, "United States": 15126281, "Alabama": 175420, "Alaska": 53719, "Arizona": 252545, "Arkansas": 103170, "California": 2013611, "Colorado": 257622, "Connecticut": 228212, "Delaware": 57013, "District of Columbia": 103733, "Florida": 729372, "Georgia": 418312, "Hawaii": 68913, "Idaho": 54411, "Illinois": 671493, "Indiana": 281540 }, { "Year": 2013, "United States": 15348044, "Alabama": 176850, "Alaska": 51323, "Arizona": 253904, "Arkansas": 106036, "California": 2064596, "Colorado": 265804, "Connecticut": 224724, "Delaware": 56037, "District of Columbia": 103508, "Florida": 743137, "Georgia": 422958, "Hawaii": 69705, "Idaho": 56117, "Illinois": 670031, "Indiana": 288323 }, { "Year": 2014, "United States": 15691181, "Alabama": 177010, "Alaska": 49653, "Arizona": 257663, "Arkansas": 107482, "California": 2143167, "Colorado": 277952, "Connecticut": 223899, "Delaware": 58742, "District of Columbia": 105205, "Florida": 764656, "Georgia": 433463, "Hawaii": 69894, "Idaho": 57135, "Illinois": 677667, "Indiana": 294438 }, { "Year": 2015, "United States": 16088249, "Alabama": 178566, "Alaska": 49353, "Arizona": 261350, "Arkansas": 107986, "California": 2225413, "Colorado": 286789, "Connecticut": 225507, "Delaware": 60335, "District of Columbia": 107515, "Florida": 794998, "Georgia": 444908, "Hawaii": 71501, "Idaho": 58676, "Illinois": 690187, "Indiana": 298666 } ];
+
+function DataObject(d){
+	/* Data parser
+	** Start with dates in col 1
+	** Geos in cols 2-k 
+	** No row or col spaces
+	** Remove commas, # format
+	** CSV to JSON
+	** Remove breaks
+	** Developer: drupalStarlord
+	*/
+	this.years = [];
+	this.names = Object.keys(d[0]); // start iter at 1
+	this.mapData = [];
+	this.chartData = [];
+	this.uDatesDict = {};
+	for(var i in d){this.years.push(d[i].State);}
+	for(var i = 0; i < this.years.length; i++){
+		var tempArray = [];
+		var currKeys = Object.keys(d[i]);
+		for(var j = 0; j < currKeys.length; j++){
+			var tempObj = {};
+			tempObj.name = currKeys[j];
+			tempObj.date = this.years[i];
+			tempObj.value = d[i][currKeys[j]];
+			tempArray.push(tempObj);
+		}
+		this.mapData.push(tempArray);
+	}
+	for(var y = 0; y < this.years.length; y++){
+		sYear = this.years[y];
+		this.uDatesDict[sYear] = parseInt(y);
+	}
+	for(var n = 1; n < this.names.length; n++){
+		var tempObj = {}, currName = this.names[n];
+		tempObj.name = currName;
+		tempObj.data = [];
+		for(var k in d){
+			tempObj.data.push(d[k][currName]);
+		}
+		this.chartData.push(tempObj);
+	}
+	this.getYears = function(){return this.years;}
+	this.getNames = function(){return this.names;}
+	this.getMapData = function(){return this.mapData;}
+	this.getChartData = function(){return this.chartData;}
+	this.getUDatesDict = function(){return this.uDatesDict;}
+}
+
+
+
+function drawMap(div, mapdata, titleYear){
+	
+	Highcharts.setOptions({
+				lang: {thousandsSep: ','},
+                chart: {credits: {enabled: false}}
+			});
+			
+	var map = new Highcharts.Map({
+		chart: {renderTo: div, width: 700, height: 500},
+		credits: {enabled: false},
+		title: {text: "Title " + titleYear},
+        subtitle: {text: '<i>Use slider to advance year. Click on dot for full graph.</i>'},
+		colorAxis: {
+            enabled: true,
+            type: 'logarithmic',
+            minColor: '#ffffff',
+            maxColor: '#283c60',
+            nullColor: '#ffffff'
+        },
+		legend: {enabled: false},
+		tooltip: {useHTML: true, 
+		formatter: function(){
+			return '<b>' + this.point.name + ' (' + this.point.date + ')<hr><b>Value: </b>' + Highcharts.numberFormat((this.point.value),0) + '<br>(Click for trend)'; }
+		},
+		series: [
+			{
+		    name: 'Data Layer', 
+			type: 'map',   
+			mapData: Highcharts.maps['countries/us/us-all'], 
+			data: mapdata, 
+			joinBy: 'name', 
+			animation: true, 
+			states: {hover: {color: '#BADA55', borderColor: 'black', borderWidth: 3.0}},
+			cursor: 'pointer',
+			point: {events: {click:function(){
+				var n = this.name;
+				var index = names.indexOf(n);
+				drawChart('chart', gChartData[index-1],"percent-change", index);
+		   }}},
+		  }]
+	});
+}
+
+function drawChart( div, chartData, percentChange, dIndex ){
+			var pc = document.getElementById(percentChange);
+			var chart = new Highcharts.chart({
+				credits: {enabled: false},
+				colors: ['#0c234b'],
+				chart: {type: 'line', renderTo: div},
+				title: {text: null},
+				xAxis: {categories: years},
+				series: [chartData]
+			});
+			var cSeries = gChartData[dIndex-1].data;
+			var pChangeSeries = {};
+			pChangeSeries.name = gChartData[dIndex-1].name + ": Change Y/Y";
+			pChangeSeries.dates = [];
+			pChangeSeries.yAxis = "chg-yy";
+			pChangeSeries.type = "column";
+			for(var y = 1; y < years.length; y++){pChangeSeries.dates.push(years[y]);}
+			var pChangeData = [null];
+			for(var j = 0; j < cSeries.length - 1; j++){
+				var ch = ((cSeries[j+1] / cSeries[j]) - 1)*100;
+				pChangeData.push(Number((ch).toFixed(2)));
+			}
+			pChangeSeries.data = pChangeData;
+			console.log(JSON.stringify(pChangeSeries));
+			//pc.onclick = function(){
+				chart.addAxis({
+					id: 'chg-yy',
+					title: {
+						text: 'Percent chg y/y'
+					},
+					opposite: true
+				});
+				chart.addSeries(pChangeSeries);
+			//}
+			return chart;
+}
+
+jQuery( function() {
+	jQuery( "#slider" ).slider({
+	min: years[0],
+	max: years[years.length-1],
+	step: 1,
+    value: years[years.length-1],
+	change: function(event, ui){var index = uDatesDict[ui.value]; drawMap('main-map', mapData[index], mapData[index][0].date );} //drawMap('my-map', usamap, map_formatted[unique_dates.indexOf(ui.value)]);}
+	});
+});
+
+var importData = new DataObject(imports),
+	  names = importData.getNames(),
+	  years = importData.getYears(),
+	  gChartData = importData.getChartData(),
+	  mapData = importData.getMapData(),
+	  uDatesDict = importData.getUDatesDict();
+	  
+jQuery(".choice").on("click",function(){
+	var id = this.id;
+	if(id == "imports"){
+      var importData = new DataObject(imports),
+	  names = importData.getNames(),
+	  years = importData.getYears(),
+	  gChartData = importData.getChartData(),
+	  mapData = importData.getMapData(),
+	  uDatesDict = importData.getUDatesDict();
+	  drawMap('main-map', mapData[mapData.length-1], mapData[mapData.length-1][0].date );
+	}
+	if(id == "exports"){
+	  var exportData = new DataObject(exports),
+	  names = exportData.getNames(),
+	  years = exportData.getYears(),
+	  gChartData = exportData.getChartData(),
+	  mapData = exportData.getMapData(),
+	  uDatesDict = exportData.getUDatesDict();
+	  drawMap('main-map', mapData[mapData.length-1], mapData[mapData.length-1][0].date );
+	}
+});
+
+drawMap('main-map', mapData[mapData.length-1], mapData[mapData.length-1][0].date );
+
+</script>
+</html>
